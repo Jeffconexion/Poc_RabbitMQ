@@ -25,32 +25,38 @@ namespace CoolMessages.App.Consumers
             _configuration = option.Value;
             _serviceProvider = serviceProvider;
 
-            var factory = new ConnectionFactory
+      //Definindo uma conexão com um nó do rabbitmq
+      var factory = new ConnectionFactory
             {
                 HostName = _configuration.Host
             };
 
-            _connection = factory.CreateConnection();
-            _channel = _connection.CreateModel();
+      //Abrindo uma conexão com um nó do RabbitMQ
+      _connection = factory.CreateConnection();
+
+      //Criação de um canal onde vamos definir uma fila, mensagem e consumir a mensagem.
+      _channel = _connection.CreateModel();
             _channel.QueueDeclare(
-                        queue: _configuration.Queue,
-                        durable: false,
-                        exclusive: false,
-                        autoDelete: false,
+                        queue: _configuration.Queue, //~~> nome da fila
+                        durable: false,//~~> se igual true a fila permanece ativa após o servidor ser reiniciado
+                        exclusive: false,//~~> se igual a true ela só pode ser acessada via conexão atual e são excluídas ao fechar a conexão.
+                        autoDelete: false,//~~> se igual a true será deletada automaticamente após os consumidores usar a fila.
                         arguments: null);
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
+      //Solicita a entrega das mensagens de forma assíncrona e fornece um retorno de chamada.
             var consumer = new EventingBasicConsumer(_channel);
 
+      //Recebe a mensagem da fila
             consumer.Received += (sender, eventArgs) =>
             {
-                var contentArray = eventArgs.Body.ToArray();
-                var contentString = Encoding.UTF8.GetString(contentArray);
-                var message = JsonConvert.DeserializeObject<MessageInputModel>(contentString);
+                var contentArray = eventArgs.Body.ToArray(); //~~> Obten um array de bytes.
+                var contentString = Encoding.UTF8.GetString(contentArray); //~~> Converte para string.
+              var message = JsonConvert.DeserializeObject<MessageInputModel>(contentString); //~~> Deserializa para json.
 
-                NotifyUser(message);
+              NotifyUser(message); //~~> Notifica um usuário ou mostra no console.
 
                 _channel.BasicAck(eventArgs.DeliveryTag, false);
             };
