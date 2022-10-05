@@ -26,9 +26,7 @@ You can access the rabbitmq at http://localhost:15672/, with the username and pa
 ### Architecture
 
 <p display="inline-block">
-<p>Mutation tests were used to validate my unit tests. Thus, ensuring well-done tests that add value.</p>
-<p>
-  <img width="90%"  src="https://github.com/Jeffconexion/Challenge_BC/blob/main/4_TestReport/1_MutationTestReport/img/1_ApiPostalCodeEApiRegisterCustomer.png" alt="vs-logo"/>
+  <img width="85%"  src="https://github.com/Jeffconexion/Poc_RabbitMQ/blob/main/Consumidor.png" alt="vs-logo"/>
 </p>
 </p>
 
