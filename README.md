@@ -26,7 +26,7 @@ You can access the rabbitmq at http://localhost:15672/, with the username and pa
 ### Architecture
 
 <p display="inline-block">
-  <img width="85%"  src="https://github.com/Jeffconexion/Poc_RabbitMQ/blob/main/Consumidor.png" alt="vs-logo"/>
+  <img width="85%"  src="https://github.com/Jeffconexion/Poc_RabbitMQ/blob/main/Architecture.png" alt="vs-logo"/>
 </p>
 </p>
 
