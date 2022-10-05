@@ -34,4 +34,8 @@ You can access the rabbitmq at http://localhost:15672/, with the username and pa
 
 [Luis Dev - Tutorial](https://www.luisdev.com.br/2022/07/06/introducao-ao-rabbitmq/)
 
+[RabbitMQ - GetStarted](https://www.rabbitmq.com/download.html)
+
+
+
 
